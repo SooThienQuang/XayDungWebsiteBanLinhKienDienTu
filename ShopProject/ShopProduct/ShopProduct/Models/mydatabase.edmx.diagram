@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e4335dea855a4779910746d2c080b2ef" Name="Diagram1">
+        <EntityTypeShape EntityType="SHOPMOONModel.Cart" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="SHOPMOONModel.Comment" Width="1.5" PointX="5.25" PointY="6.375" />
+        <EntityTypeShape EntityType="SHOPMOONModel.Customer" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="SHOPMOONModel.DetailsOrder" Width="1.5" PointX="8.25" PointY="10" />
+        <EntityTypeShape EntityType="SHOPMOONModel.Employee" Width="1.5" PointX="10" PointY="2.5" />
+        <EntityTypeShape EntityType="SHOPMOONModel.EmployeesPosition" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SHOPMOONModel.EmployeesRole" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SHOPMOONModel.Order" Width="1.5" PointX="12.25" PointY="4.125" />
+        <EntityTypeShape EntityType="SHOPMOONModel.ProducerType" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="SHOPMOONModel.Product" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="SHOPMOONModel.ProductDetail" Width="1.5" PointX="5.25" PointY="17.75" />
+        <EntityTypeShape EntityType="SHOPMOONModel.ProductType" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="SHOPMOONModel.Rate" Width="1.5" PointX="5.25" PointY="23" />
+        <EntityTypeShape EntityType="SHOPMOONModel.sysdiagram" Width="1.5" PointX="10.75" PointY="8.25" />
+        <AssociationConnector Association="SHOPMOONModel.fk_ca" />
+        <AssociationConnector Association="SHOPMOONModel.fk_CartproID" />
+        <AssociationConnector Association="SHOPMOONModel.fk_ComCusID" />
+        <AssociationConnector Association="SHOPMOONModel.fk_ComPr" />
+        <AssociationConnector Association="SHOPMOONModel.fk_DeOrderCus" />
+        <AssociationConnector Association="SHOPMOONModel.fk_orderscus" />
+        <AssociationConnector Association="SHOPMOONModel.fk_DeOrderProID" />
+        <AssociationConnector Association="SHOPMOONModel.fk_EmPos" />
+        <AssociationConnector Association="SHOPMOONModel.fk_EmRole" />
+        <AssociationConnector Association="SHOPMOONModel.fk_OrderEmID" />
+        <AssociationConnector Association="SHOPMOONModel.fk_Producer" />
+        <AssociationConnector Association="SHOPMOONModel.fk_ProID" />
+        <AssociationConnector Association="SHOPMOONModel.fk_ProType" />
+        <AssociationConnector Association="SHOPMOONModel.fk_RatePro" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

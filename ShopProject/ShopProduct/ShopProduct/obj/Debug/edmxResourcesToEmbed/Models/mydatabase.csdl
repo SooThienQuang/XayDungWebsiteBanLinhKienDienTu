@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SHOPMOONModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SHOPMOONEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Carts" EntityType="SHOPMOONModel.Cart" />
+    <EntitySet Name="Comments" EntityType="SHOPMOONModel.Comment" />
+    <EntitySet Name="Customers" EntityType="SHOPMOONModel.Customer" />
+    <EntitySet Name="DetailsOrders" EntityType="SHOPMOONModel.DetailsOrder" />
+    <EntitySet Name="Employees" EntityType="SHOPMOONModel.Employee" />
+    <EntitySet Name="EmployeesPositions" EntityType="SHOPMOONModel.EmployeesPosition" />
+    <EntitySet Name="EmployeesRoles" EntityType="SHOPMOONModel.EmployeesRole" />
+    <EntitySet Name="Orders" EntityType="SHOPMOONModel.Order" />
+    <EntitySet Name="ProducerTypes" EntityType="SHOPMOONModel.ProducerType" />
+    <EntitySet Name="Products" EntityType="SHOPMOONModel.Product" />
+    <EntitySet Name="ProductDetails" EntityType="SHOPMOONModel.ProductDetail" />
+    <EntitySet Name="ProductTypes" EntityType="SHOPMOONModel.ProductType" />
+    <EntitySet Name="Rates" EntityType="SHOPMOONModel.Rate" />
+    <EntitySet Name="sysdiagrams" EntityType="SHOPMOONModel.sysdiagram" />
+    <AssociationSet Name="fk_ca" Association="SHOPMOONModel.fk_ca">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CartproID" Association="SHOPMOONModel.fk_CartproID">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ComCusID" Association="SHOPMOONModel.fk_ComCusID">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ComPr" Association="SHOPMOONModel.fk_ComPr">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_DeOrderCus" Association="SHOPMOONModel.fk_DeOrderCus">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="DetailsOrder" EntitySet="DetailsOrders" />
+    </AssociationSet>
+    <AssociationSet Name="fk_orderscus" Association="SHOPMOONModel.fk_orderscus">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="fk_DeOrderProID" Association="SHOPMOONModel.fk_DeOrderProID">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="DetailsOrder" EntitySet="DetailsOrders" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EmPos" Association="SHOPMOONModel.fk_EmPos">
+      <End Role="EmployeesPosition" EntitySet="EmployeesPositions" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EmRole" Association="SHOPMOONModel.fk_EmRole">
+      <End Role="EmployeesRole" EntitySet="EmployeesRoles" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="fk_OrderEmID" Association="SHOPMOONModel.fk_OrderEmID">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Producer" Association="SHOPMOONModel.fk_Producer">
+      <End Role="ProducerType" EntitySet="ProducerTypes" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ProID" Association="SHOPMOONModel.fk_ProID">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductDetail" EntitySet="ProductDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ProType" Association="SHOPMOONModel.fk_ProType">
+      <End Role="ProductType" EntitySet="ProductTypes" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RatePro" Association="SHOPMOONModel.fk_RatePro">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Rate" EntitySet="Rates" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="cartID" />
+    </Key>
+    <Property Name="cartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proID" Type="Int32" />
+    <Property Name="proPrice" Type="Int32" />
+    <Property Name="CartQuantity" Type="Int32" />
+    <Property Name="CartMoney" Type="Int32" />
+    <Property Name="cusID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="SHOPMOONModel.fk_ca" FromRole="Cart" ToRole="Customer" />
+    <NavigationProperty Name="Product" Relationship="SHOPMOONModel.fk_CartproID" FromRole="Cart" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="comID" />
+    </Key>
+    <Property Name="comID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proID" Type="Int32" />
+    <Property Name="cusID" Type="Int32" />
+    <Property Name="comMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="SHOPMOONModel.fk_ComCusID" FromRole="Comment" ToRole="Customer" />
+    <NavigationProperty Name="Product" Relationship="SHOPMOONModel.fk_ComPr" FromRole="Comment" ToRole="Product" />
+    <Property Name="comDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="cusID" />
+    </Key>
+    <Property Name="cusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cusEmail" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="cusPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="cusPassword" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cusAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cusType" Type="Int32" />
+    <Property Name="cusStatus" Type="Int32" />
+    <NavigationProperty Name="Carts" Relationship="SHOPMOONModel.fk_ca" FromRole="Customer" ToRole="Cart" />
+    <NavigationProperty Name="Comments" Relationship="SHOPMOONModel.fk_ComCusID" FromRole="Customer" ToRole="Comment" />
+    <NavigationProperty Name="DetailsOrders" Relationship="SHOPMOONModel.fk_DeOrderCus" FromRole="Customer" ToRole="DetailsOrder" />
+    <NavigationProperty Name="Orders" Relationship="SHOPMOONModel.fk_orderscus" FromRole="Customer" ToRole="Order" />
+    <Property Name="cusPhoto" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DetailsOrder">
+    <Key>
+      <PropertyRef Name="DeOrderID" />
+    </Key>
+    <Property Name="DeOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proID" Type="Int32" />
+    <Property Name="orderAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="proPrice" Type="Int32" />
+    <Property Name="orderQuantity" Type="Int32" />
+    <Property Name="orderMoney" Type="Int32" />
+    <Property Name="cusID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="SHOPMOONModel.fk_DeOrderCus" FromRole="DetailsOrder" ToRole="Customer" />
+    <NavigationProperty Name="Product" Relationship="SHOPMOONModel.fk_DeOrderProID" FromRole="DetailsOrder" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="empID" />
+    </Key>
+    <Property Name="empID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="empDate" Type="DateTime" Precision="0" />
+    <Property Name="empPhoto" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="empAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="empSalary" Type="Int32" />
+    <Property Name="empBonus" Type="Int32" />
+    <Property Name="empStartTime" Type="DateTime" Precision="0" />
+    <Property Name="empEmail" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="empPhone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="empPassword" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="emPositon" Type="Int32" />
+    <Property Name="empRole" Type="Int32" />
+    <NavigationProperty Name="EmployeesPosition" Relationship="SHOPMOONModel.fk_EmPos" FromRole="Employee" ToRole="EmployeesPosition" />
+    <NavigationProperty Name="EmployeesRole" Relationship="SHOPMOONModel.fk_EmRole" FromRole="Employee" ToRole="EmployeesRole" />
+    <NavigationProperty Name="Orders" Relationship="SHOPMOONModel.fk_OrderEmID" FromRole="Employee" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="EmployeesPosition">
+    <Key>
+      <PropertyRef Name="emPositon" />
+    </Key>
+    <Property Name="emPositon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emPositonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employees" Relationship="SHOPMOONModel.fk_EmPos" FromRole="EmployeesPosition" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="EmployeesRole">
+    <Key>
+      <PropertyRef Name="empRole" />
+    </Key>
+    <Property Name="empRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empRoleName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employees" Relationship="SHOPMOONModel.fk_EmRole" FromRole="EmployeesRole" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderDate" Type="DateTime" Precision="0" />
+    <Property Name="orderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="empID" Type="Int32" />
+    <Property Name="cusID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="SHOPMOONModel.fk_orderscus" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="Employee" Relationship="SHOPMOONModel.fk_OrderEmID" FromRole="Order" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="ProducerType">
+    <Key>
+      <PropertyRef Name="proProducer" />
+    </Key>
+    <Property Name="proProducer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proProducerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="SHOPMOONModel.fk_Producer" FromRole="ProducerType" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="proID" />
+    </Key>
+    <Property Name="proID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="proPrice" Type="Int32" />
+    <Property Name="proPhoto" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="proType" Type="Int32" />
+    <Property Name="proStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proProducer" Type="Int32" />
+    <Property Name="proQuatity" Type="Int32" />
+    <NavigationProperty Name="Carts" Relationship="SHOPMOONModel.fk_CartproID" FromRole="Product" ToRole="Cart" />
+    <NavigationProperty Name="Comments" Relationship="SHOPMOONModel.fk_ComPr" FromRole="Product" ToRole="Comment" />
+    <NavigationProperty Name="DetailsOrders" Relationship="SHOPMOONModel.fk_DeOrderProID" FromRole="Product" ToRole="DetailsOrder" />
+    <NavigationProperty Name="ProducerType" Relationship="SHOPMOONModel.fk_Producer" FromRole="Product" ToRole="ProducerType" />
+    <NavigationProperty Name="ProductDetail" Relationship="SHOPMOONModel.fk_ProID" FromRole="Product" ToRole="ProductDetail" />
+    <NavigationProperty Name="ProductType" Relationship="SHOPMOONModel.fk_ProType" FromRole="Product" ToRole="ProductType" />
+    <NavigationProperty Name="Rate" Relationship="SHOPMOONModel.fk_RatePro" FromRole="Product" ToRole="Rate" />
+  </EntityType>
+  <EntityType Name="ProductDetail">
+    <Key>
+      <PropertyRef Name="proID" />
+    </Key>
+    <Property Name="proID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="proPhoto1" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="proPhoto2" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="proPhoto3" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="proPhoto4" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="proPhoto5" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="proMaxDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="proDisplay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proOS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proCameraAhead" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="proCameraBehind" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proChip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="proRam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proMemory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proSim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proPin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="SHOPMOONModel.fk_ProID" FromRole="ProductDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="proType" />
+    </Key>
+    <Property Name="proType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="SHOPMOONModel.fk_ProType" FromRole="ProductType" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Rate">
+    <Key>
+      <PropertyRef Name="proID" />
+    </Key>
+    <Property Name="proID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numberStar" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="SHOPMOONModel.fk_RatePro" FromRole="Rate" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="fk_ca">
+    <End Type="SHOPMOONModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="cusID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="cusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CartproID">
+    <End Type="SHOPMOONModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="proID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="proID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ComCusID">
+    <End Type="SHOPMOONModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="cusID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="cusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ComPr">
+    <End Type="SHOPMOONModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="proID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="proID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_DeOrderCus">
+    <End Type="SHOPMOONModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.DetailsOrder" Role="DetailsOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="cusID" />
+      </Principal>
+      <Dependent Role="DetailsOrder">
+        <PropertyRef Name="cusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_orderscus">
+    <End Type="SHOPMOONModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="cusID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="cusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_DeOrderProID">
+    <End Type="SHOPMOONModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.DetailsOrder" Role="DetailsOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="proID" />
+      </Principal>
+      <Dependent Role="DetailsOrder">
+        <PropertyRef Name="proID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EmPos">
+    <End Type="SHOPMOONModel.EmployeesPosition" Role="EmployeesPosition" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeesPosition">
+        <PropertyRef Name="emPositon" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="emPositon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EmRole">
+    <End Type="SHOPMOONModel.EmployeesRole" Role="EmployeesRole" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeesRole">
+        <PropertyRef Name="empRole" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="empRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_OrderEmID">
+    <End Type="SHOPMOONModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="empID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="empID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Producer">
+    <End Type="SHOPMOONModel.ProducerType" Role="ProducerType" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProducerType">
+        <PropertyRef Name="proProducer" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="proProducer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ProID">
+    <End Type="SHOPMOONModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="SHOPMOONModel.ProductDetail" Role="ProductDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="proID" />
+      </Principal>
+      <Dependent Role="ProductDetail">
+        <PropertyRef Name="proID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ProType">
+    <End Type="SHOPMOONModel.ProductType" Role="ProductType" Multiplicity="0..1" />
+    <End Type="SHOPMOONModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="proType" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="proType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RatePro">
+    <End Type="SHOPMOONModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="SHOPMOONModel.Rate" Role="Rate" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="proID" />
+      </Principal>
+      <Dependent Role="Rate">
+        <PropertyRef Name="proID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<style>
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+</head>
+<body>
+    <div class="container">
+        <div>
+            @Html.Action("Header", "PartialView")
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div>
+        @Html.Action("Carosel", "PartialView")
+    </div>
+    <div>
+        @Html.Action("Footer", "PartialView")
+    </div>
+</body>
+</html>
